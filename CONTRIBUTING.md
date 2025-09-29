@@ -4,7 +4,6 @@ Thank you for your interest in contributing to the RAG Chatbot project! This doc
 
 ## 📋 Table of Contents
 
-- [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
 - [Development Setup](#development-setup)
 - [Contribution Process](#contribution-process)
