@@ -1,0 +1,52 @@
+# Development environment with hot reload
+version: '3.8'
+
+services:
+  # Development RAG API with hot reload
+  rag-api-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-chatbot-api-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - RAG_ENV=development
+      - LOG_LEVEL=DEBUG
+    command: ["python", "-m", "uvicorn", "src.web_interface.fastapi_app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    restart: unless-stopped
+    networks:
+      - rag-network
+
+  # Development Streamlit with hot reload
+  rag-web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-chatbot-web-dev
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - RAG_ENV=development
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    command: ["streamlit", "run", "src/web_interface/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.runOnSave=true"]
+    depends_on:
+      - rag-api-dev
+    restart: unless-stopped
+    networks:
+      - rag-network
+
+networks:
+  rag-network:
+    driver: bridge

@@ -1,0 +1,58 @@
+# RAG Chatbot Configuration
+
+# LLM Settings
+llm_model: "mistral-7b"  # Options: mistral-7b, llama2-7b, llama2-13b, falcon-7b, codellama-7b
+embedding_model: "all-MiniLM-L6-v2"  # Options: all-MiniLM-L6-v2, all-mpnet-base-v2, multi-qa-MiniLM-L6-cos-v1
+vector_store_type: "chroma"  # Options: chroma, faiss
+
+# Document Processing
+chunk_size: 1000
+chunk_overlap: 200
+max_file_size_mb: 50
+
+# Generation Parameters
+temperature: 0.7
+max_response_length: 2048
+top_k_retrieval: 5
+
+# Security Settings
+content_filter_level: "moderate"  # Options: strict, moderate, relaxed
+session_timeout_minutes: 60
+max_login_attempts: 5
+lockout_duration_minutes: 5
+
+# Rate Limiting
+queries_per_minute: 30
+uploads_per_hour: 10
+
+# System Settings
+data_directory: "./data"
+log_level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+enable_metrics: true
+enable_caching: false
+
+# API Settings
+api_host: "0.0.0.0"
+api_port: 8000
+enable_cors: true
+enable_docs: true
+
+# Web Interface Settings
+web_host: "0.0.0.0"
+web_port: 8501
+enable_file_upload: true
+max_chat_history: 50
+
+# Model Loading Settings
+load_in_4bit: true
+load_in_8bit: false
+device: "auto"  # Options: auto, cpu, cuda
+
+# Vector Store Settings
+faiss_index_type: "flat"
+chroma_persist_directory: "./data/chroma_db"
+chroma_collection_name: "documents"
+
+# Monitoring
+health_check_interval: 30
+log_retention_days: 30
