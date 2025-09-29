@@ -406,4 +406,4 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for secure, scalable, and intelligent document interaction**
+
