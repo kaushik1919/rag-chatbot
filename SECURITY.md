@@ -124,7 +124,6 @@ This project aims to comply with:
 
 For security-related questions or concerns:
 
-- Email: [security@project-email.com]
 - Security issues: Use the reporting process above
 - General questions: Create a GitHub discussion
 
